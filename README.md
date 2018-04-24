@@ -3,6 +3,17 @@
 This is an experimental Tensorflow implementation of MV3D - a ConvNet for object detection with Lidar and Mono-camera.
 
 For details about MV3D please refer to the paper [Multi-View 3D Object Detection Network for Autonomous Driving](https://arxiv.org/abs/1611.07759) by [Xiaozhi Chen](https://arxiv.org/find/cs/1/au:+Chen_X/0/1/0/all/0/1), [Huimin Ma](https://arxiv.org/find/cs/1/au:+Ma_H/0/1/0/all/0/1), [Ji Wan](https://arxiv.org/find/cs/1/au:+Wan_J/0/1/0/all/0/1), [Bo Li](https://arxiv.org/find/cs/1/au:+Li_B/0/1/0/all/0/1), [Tian Xia](https://arxiv.org/find/cs/1/au:+Xia_T/0/1/0/all/0/1).
+```latex
+@inproceedings{chen2017multi,
+  title={Multi-view 3d object detection network for autonomous driving},
+  author={Chen, Xiaozhi and Ma, Huimin and Wan, Ji and Li, Bo and Xia, Tian},
+  booktitle={IEEE CVPR},
+  volume={1},
+  number={2},
+  pages={3},
+  year={2017}
+}
+```
 
 ### Requirements: software
 
