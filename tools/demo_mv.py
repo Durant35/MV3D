@@ -226,7 +226,7 @@ if __name__ == '__main__':
     # im_names = ['000456', '000542', '001150',
     #             '001763', '004545']
 
-    root_dir = '/sdb-4T/raw_kitti/2011_09_26/object/0064/training'
+    root_dir = '/media/gary/HardDisk/Datasets/KiTTI/3d_object/testing'
     num = len(os.listdir(os.path.join(root_dir, 'image_2')))
 
     for im_name in range(449, 570):

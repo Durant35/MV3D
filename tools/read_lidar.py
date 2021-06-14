@@ -1,7 +1,13 @@
+#!/usr/bin/env python
+
+# Copyright...
+
+""" Point Cloud Raw Data Bird Eye View Preprocess
+"""
+
 import numpy as np
 import os
 import matplotlib.pyplot as plt
-
 
 
 # ==============================================================================
@@ -114,15 +120,16 @@ def point_cloud_2_top(points,
 
     return top
 
-root_dir = "/sdb-4T/kitti/object/testing"
+root_dir = "/media/gary/HardDisk/Datasets/KiTTI/3d_object/training/"
 velodyne = os.path.join(root_dir, "velodyne/")
+num_pc = len(os.listdir(velodyne))
 bird = os.path.join(root_dir, "lidar_bv/")
 
 side_range = (-30., 30.)
 fwd_range = (0., 60)
 height_range = (-2, 0.4) #
 
-for i in range(400):
+for i in range(num_pc):
     filename = velodyne + str(i).zfill(6) + ".bin"
     print("Processing: ", filename)
     scan = np.fromfile(filename, dtype=np.float32)
@@ -140,6 +147,4 @@ test = np.load(bird + "000008.npy")
 print(test.shape)
 plt.imshow(test[:,:,8])
 plt.show()
-
-
 

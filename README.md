@@ -16,6 +16,18 @@ For details about MV3D please refer to the paper [Multi-View 3D Object Detection
 ```
 
 ### Requirements: software
++ Ubuntu 16.04 LTS
+```bash
+$ lsb_release -a
+No LSB modules are available.
+Distributor ID: Ubuntu
+Description:    Ubuntu 16.04 LTS
+Release:        16.04
+Codename:       xenial
+$ python --version
+Python 2.7.12
+```
+
 
 1. Requirements for Tensorflow 1.0  (see: [Tensorflow](https://www.tensorflow.org/))
 
@@ -28,10 +40,51 @@ For details about MV3D please refer to the paper [Multi-View 3D Object Detection
 ### Installation 
 
 1. Clone the Faster R-CNN repository
-```Shell
-  # Make sure to clone with --recursive
-  git clone --recursive https://github.com/RyannnG/MV3D_TF.git
-```
+    ```bash
+    $ lsb_release -a
+    No LSB modules are available.
+    Distributor ID: Ubuntu
+    Description:  Ubuntu 18.04.4 LTS
+    Release:  18.04
+    Codename: bionic
+    $ python --version
+    Python 2.7.17
+    $ pip install virtualenv==16.0.0
+    ...
+    #  configure virtualenvwrapper
+    $ mkdir ~/.local/virtualenvs
+    # append contents in `~/.bashrc`
+    $ vim ~/.bashrc
+    ...
+    ## Configure virtualenvwrapper
+    # always use pip/distribute
+    export VIRTUALENV_USE_DISTRIBUTE=1
+    # directory to store all virtual environment
+    export WORKON_HOME=~/.local/virtualenvs
+    if [ -e ~/.local/bin/virtualenvwrapper.sh ]; then
+        source ~/.local/bin/virtualenvwrapper.sh
+    elif [ -e /usr/local/bin/virtualenvwrapper.sh ]; then
+        source /usr/local/bin/virtualenvwrapper.sh
+    fi
+    export PIP_VIRTUALENV_BASE=$WORKON_HOME
+    export PIP_RESPECT_VIRTUALENV=true
+    
+    # enable virtualenvwrapper
+    $ source ~/.bashrc
+    # create virtual environment with python2.7, naming python2-tf1.0.0 means     tensorflow 1.0.0
+    $ mkvirtualenv -p /usr/bin/python2.7 python2.7-tf1.0.0
+    created virtual environment CPython2.7.17.final.0-64 in 379ms
+  creator CPython2Posix(dest=/home/garychan/.local/virtualenvs/python2.7-tf1.0.0,     clear=False, no_vcs_ignore=False, global=False)
+  seeder FromAppData(download=False, pip=bundle, wheel=bundle, setuptools=bundle,     via=copy, app_data_dir=/home/garychan/.local/share/virtualenv)
+        added seed packages: pip==20.3.1, setuptools==44.1.1, wheel==0.36.1
+  activators     PythonActivator,CShellActivator,FishActivator,PowerShellActivator,BashActivator
+    ...
+    (python2.7-tf1.0.0) ...~$ deactivate
+    $ 
+
+    # Make sure to clone with --recursive
+    $ git clone --recursive https://github.com/LidarPerception/MV3D.git
+    ```
 
 2. Build the Cython modules
    ```Shell

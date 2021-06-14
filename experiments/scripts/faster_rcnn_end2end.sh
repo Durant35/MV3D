@@ -44,6 +44,7 @@ case $DATASET in
     ;;
 esac
 
+mkdir -p experiments/logs
 LOG="experiments/logs/faster_rcnn_end2end_${NET}_${EXTRA_ARGS_SLUG}.txt.`date +'%Y-%m-%d_%H-%M-%S'`"
 exec &> >(tee -a "$LOG")
 echo Logging output to "$LOG"
@@ -66,3 +67,4 @@ time python ./tools/test_net.py --device ${DEV} --device_id ${DEV_ID} \
   --cfg experiments/cfgs/faster_rcnn_end2end.yml \
   --network VGGnet_test \
   ${EXTRA_ARGS}
+

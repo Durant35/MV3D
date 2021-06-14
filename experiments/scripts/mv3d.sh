@@ -1,11 +1,9 @@
 #!/bin/bash
 # Usage:
-# ./experiments/scripts/faster_rcnn_end2end.sh GPU NET DATASET [options args to {train,test}_net.py]
-# DATASET is either pascal_voc or coco.
+# ./experiments/scripts/mv3d.sh $DEVICE $DEVICE_ID PRE_TRAINED-MODEL kitti_train
 #
 # Example:
-# ./experiments/scripts/faster_rcnn_end2end.sh 0 VGG_CNN_M_1024 pascal_voc \
-#   --set EXP_DIR foobar RNG_SEED 42 TRAIN.SCALES "[400, 500, 600, 700]"
+# ./experiments/scripts/mv3d.sh gpu 0 data/pretrain_model/VGG_imagenet.npy kitti_train
 
 set -x
 set -e
@@ -23,20 +21,19 @@ EXTRA_ARGS=${array[@]:4:$len}
 EXTRA_ARGS_SLUG=${EXTRA_ARGS// /_}
 
 
-
-LOG="experiments/logs/mv3d_end2end_.txt.`date +'%Y-%m-%d_%H-%M-%S'`"
+mkdir -p experiments/logs
+LOG="experiments/logs/mv3d.txt.`date +'%Y-%m-%d_%H-%M-%S'`"
 exec &> >(tee -a "$LOG")
 echo Logging output to "$LOG"
 
 time python ./tools/train_net.py --device ${DEV} --device_id ${DEV_ID} \
-  --weights ${WEIGHTS}\
+  --weights ${WEIGHTS} \
   --imdb ${DATASET} \
-  --iters 50001\
+  --iters 50001 \
   --cfg experiments/cfgs/faster_rcnn_end2end.yml \
   --network MV3D_train \
   ${EXTRA_ARGS}
 
-  # --weights data/pretrain_model/vgg_imagenet_sampled.npy \
 set +x
 NET_FINAL=`grep -B 1 "done solving" ${LOG} | grep "Wrote snapshot" | awk '{print $4}'`
 set -x
@@ -47,3 +44,4 @@ time python ./tools/test_net.py --device ${DEV} --device_id ${DEV_ID} \
   --cfg experiments/cfgs/faster_rcnn_end2end.yml \
   --network MV3D_test \
   ${EXTRA_ARGS}
+

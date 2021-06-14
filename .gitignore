@@ -2,3 +2,16 @@
 *.so
 *.o
 faster_rcnn_models
+
+# Pre-trained model
+data/pretrain_model/
+
+# Training output
+data/cache/
+output/
+
+# Dataset
+data/KITTI/object
+
+# Logs
+experiments/logs/
